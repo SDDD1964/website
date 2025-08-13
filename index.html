@@ -18,7 +18,7 @@
         }
         
         .hero-section {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://github.com/SDDD1964/website/blob/main/WhatsApp%20Image%202025-08-04%20at%2011.25.16%20AM.jpeg?raw=true');
+            background: url('file:///C:/Users/Ganesh%20Amin/Downloads/WhatsApp%20Image%202025-08-13%20at%209.26.41%20PM.jpeg');
             background-size: cover;
             background-position: center;
             min-height: 80vh;
@@ -92,30 +92,21 @@
     <header class="sticky top-0 z-50 bg-white shadow-md">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
             <div class="flex items-center">
-                <img src="https://github.com/SDDD1964/website/blob/main/file.jpg?raw=true" alt="Temple Logo" class="h-12 w-12 mr-3">
+                <img src="https://github.com/SDDD1964/website/blob/main/file.jpg?raw=true" alt="Temple Logo" class="h-16 w-16 mr-3 self-center">
                 <div>
                     <h1 class="text-xl md:text-2xl font-bold text-gray-800">Shree Kshetra Asalpha</h1>
                     <h2 class="text-xl md:text-2xl font-bold text-gray-800">Shree Dattatreya Durgambika Devasthana</h2>
                     <p class="text-xs text-gray-600">Shree Dattatreya Durgambika Marg, Subhash Nagar, Asalpha, Ghatkopar (West), Mumbai - 400084</p>
                 </div>
             </div>
-            <button id="menu-toggle" class="md:hidden text-gray-800 focus:outline-none">
+            <div class="flex-1"></div> <!-- This pushes the button to the right -->
+            <button id="menu-toggle" class="text-gray-800 focus:outline-none ml-auto">
                 <i class="fas fa-bars text-2xl"></i>
             </button>
-            <nav class="hidden md:flex space-x-8">
-                <a href="#home" class="nav-link active text-gray-800 font-medium">Home</a>
-                <a href="#about" class="nav-link text-gray-800 font-medium">About</a>
-                <a href="#deities" class="nav-link text-gray-800 font-medium">Gods</a>
-                <a href="#seva" class="nav-link text-gray-800 font-medium">Seva Timings</a>
-                <a href="#gallery" class="nav-link text-gray-800 font-medium">Gallery</a>
-                <a href="#social" class="nav-link text-gray-800 font-medium">Social Media</a>
-                <a href="#events" class="nav-link text-gray-800 font-medium">Upcoming Events</a>
-                <a href="#contact" class="nav-link text-gray-800 font-medium">Contact</a>
-            </nav>
         </div>
         
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white py-2 px-4 shadow-lg">
+        <!-- Mobile/Desktop Menu -->
+        <div id="mobile-menu" class="hidden bg-white py-2 px-4 shadow-lg md:absolute md:top-16 md:right-4 md:w-64">
             <div class="flex flex-col space-y-3">
                 <a href="#home" class="nav-link active text-gray-800 font-medium py-1">Home</a>
                 <a href="#about" class="nav-link text-gray-800 font-medium py-1">About</a>
@@ -130,17 +121,19 @@
     </header>
 
     <!-- Hero Section -->
-    <section id="home" class="hero-section flex items-center justify-center text-center text-white relative">
-        <div class="container mx-auto px-4">
-            <h1 class="font-tangerine text-5xl md:text-8xl mb-4">Shree Dattatreya Durgambika Devasthana</h1>
-            <p class="text-xl md:text-2xl mb-8">The temple with divine blessings in Asalpha</p>
-            <div class="flex flex-wrap justify-center gap-4">
-                <a href="#seva" class="bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 px-6 rounded-full transition duration-300">
-                    Seva Schedule
-                </a>
-                <a href="#contact" class="bg-transparent hover:bg-white hover:text-gray-800 text-white font-bold py-3 px-6 border-2 border-white rounded-full transition duration-300">
-                    Visit Us
-                </a>
+    <section id="home" class="hero-section flex items-center justify-end md:justify-center text-white relative">
+        <div class="container mx-auto px-4 text-center md:text-right">
+            <div class="max-w-2xl md:ml-auto">
+                <p class="font-tangerine text-3xl md:text-5xl mb-8">Namaste Grama Aadi Shakti Dattatreya Durgambika Subhe|</p>
+                <p class="font-tangerine text-3xl md:text-5xl mb-8">Asalphasthite Jaganmaata Sarvesam Mangalam Kuru ||</p>
+                <div class="flex flex-wrap justify-center md:justify-end gap-4">
+                    <a href="#seva" class="bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 px-6 rounded-full transition duration-300">
+                        Seva Schedule
+                    </a>
+                    <a href="#contact" class="bg-transparent hover:bg-white hover:text-gray-800 text-white font-bold py-3 px-6 border-2 border-white rounded-full transition duration-300">
+                        Visit Us
+                    </a>
+                </div>
             </div>
         </div>
     </section>
@@ -301,7 +294,7 @@
         <div class="container mx-auto px-4">
             <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-12">Seva Timings</h2>
             
-            <div class="flex flex-col lg:flex-row gap-8">
+            <div class="flex flex-col lg:flex-row gap-8 items-center lg:items-start">
                 <div class="lg:w-1/2 bg-amber-50 rounded-lg p-8 shadow-lg">
                     <h3 class="text-2xl font-bold text-amber-800 mb-6 flex items-center">
                         <i class="fas fa-calendar-day mr-3"></i> Regular Daily Schedule
@@ -862,8 +855,13 @@
         <i class="fas fa-arrow-up"></i>
     </button>
 
+    <!-- Renovation Button -->
+    <a href="first.html" class="fixed bottom-8 left-8 bg-[#800000] hover:bg-[#600000] text-white font-medium py-3 px-4 rounded-full shadow-lg flex items-center justify-center transition duration-300 z-50">
+        Renovation
+    </a>
+
     <script>
-        // Mobile Menu Toggle
+        // Menu Toggle
         const menuToggle = document.getElementById('menu-toggle');
         const mobileMenu = document.getElementById('mobile-menu');
         
