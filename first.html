@@ -27,6 +27,7 @@
                         <h2 class="text-xl font-bold">Shree Dattatreya Durgambika Devasthana</h2>
                     </div>
                 </div>                <nav class="hidden md:flex space-x-6">
+                    <a href="#home" class="hover:text-amber-200 transition duration-300" onclick="event.preventDefault(); document.getElementById('about').scrollIntoView({behavior: 'smooth'});">Home</a>
                     <a href="#about" class="hover:text-amber-200 transition duration-300" onclick="event.preventDefault(); document.getElementById('about').scrollIntoView({behavior: 'smooth'});">About</a>
                     <a href="#gallery" class="hover:text-amber-200 transition duration-300" onclick="event.preventDefault(); document.getElementById('gallery').scrollIntoView({behavior: 'smooth'});">Gallery</a>
                     <a href="#donate" class="hover:text-amber-200 transition duration-300" onclick="event.preventDefault(); document.getElementById('donate').scrollIntoView({behavior: 'smooth'});">Donate</a>
@@ -40,7 +41,7 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="hero-image h-96 flex items-center justify-center text-white">
+    <section id="home" class="hero-image h-96 flex items-center justify-center text-white">
         <div class="text-center px-4">
             <h1 class="text-4xl md:text-6xl font-bold mb-4">Renovation</h1>
             <p class="text-xl md:text-2xl max-w-2xl mx-auto">For the construction of Amma's magnificent Devasthana</p>
@@ -219,6 +220,7 @@
 </body>
 
 </html>
+
 
 
 
