@@ -139,7 +139,7 @@
                     <div class="flex justify-between items-center border-b pb-4">
                         <div>
                             <h3 class="font-bold text-gray-800">9. Puspha Pooja</h3>
-                            <p class="text-gray-600 text-sm">This Seva is performed every Saturday.</p>
+                            <p class="text-gray-600 text-sm">This Seva is performed everyday on Temple Timings.</p>
                         </div>
                         <div class="flex items-center space-x-4">
                             <span class="text-yellow-600 font-bold">₹501</span>
@@ -150,7 +150,7 @@
                     <div class="flex justify-between items-center border-b pb-4">
                         <div>
                             <h3 class="font-bold text-gray-800">10. Durga Pooja</h3>
-                            <p class="text-gray-600 text-sm">This Seva is performed every Saturday.</p>
+                            <p class="text-gray-600 text-sm">This Seva is performed everyday on Temple Timings.</p>
                         </div>
                         <div class="flex items-center space-x-4">
                             <span class="text-yellow-600 font-bold">₹301</span>
@@ -161,7 +161,7 @@
                     <div class="flex justify-between items-center border-b pb-4">
                         <div>
                             <h3 class="font-bold text-gray-800">11. Dattatreya Pooja</h3>
-                            <p class="text-gray-600 text-sm">This Seva is performed every Saturday.</p>
+                            <p class="text-gray-600 text-sm">This Seva is performed everyday on Temple Timings.</p>
                         </div>
                         <div class="flex items-center space-x-4">
                             <span class="text-yellow-600 font-bold">₹301</span>
@@ -172,7 +172,7 @@
                     <div class="flex justify-between items-center border-b pb-4">
                         <div>
                             <h3 class="font-bold text-gray-800">12. Gaddige Pooja</h3>
-                            <p class="text-gray-600 text-sm">This Seva is performed every Saturday.</p>
+                            <p class="text-gray-600 text-sm">This Seva is performed everyday on Temple Timings.</p>
                         </div>
                         <div class="flex items-center space-x-4">
                             <span class="text-yellow-600 font-bold">₹251</span>
@@ -183,7 +183,7 @@
                     <div class="flex justify-between items-center border-b pb-4">
                         <div>
                             <h3 class="font-bold text-gray-800">13. Annjaneya Seva</h3>
-                            <p class="text-gray-600 text-sm">This Seva is performed every Saturday.</p>
+                            <p class="text-gray-600 text-sm">This Seva is performed everyday on Temple Timings.</p>
                         </div>
                         <div class="flex items-center space-x-4">
                             <span class="text-yellow-600 font-bold">₹301</span>
@@ -205,7 +205,7 @@
                     <div class="flex justify-between items-center border-b pb-4">
                         <div>
                             <h3 class="font-bold text-gray-800">15. Kalasha Sthana</h3>
-                            <p class="text-gray-600 text-sm">This Seva is performed every Saturday.</p>
+                            <p class="text-gray-600 text-sm">This Seva is performed everyday on Temple Timings.</p>
                         </div>
                         <div class="flex items-center space-x-4">
                             <span class="text-yellow-600 font-bold">₹251</span>
@@ -216,7 +216,7 @@
                     <div class="flex justify-between items-center border-b pb-4">
                         <div>
                             <h3 class="font-bold text-gray-800">16. Prashne</h3>
-                            <p class="text-gray-600 text-sm">This Seva is performed every Saturday.</p>
+                            <p class="text-gray-600 text-sm">This Seva is performed every Saturday. Be available during Devi Darshana.</p>
                         </div>
                         <div class="flex items-center space-x-4">
                             <span class="text-yellow-600 font-bold">₹201</span>
@@ -238,7 +238,7 @@
                     <div class="flex justify-between items-center border-b pb-4">
                         <div>
                             <h3 class="font-bold text-gray-800">18. Kumkum Archane</h3>
-                            <p class="text-gray-600 text-sm">This Seva is performed every Saturday.</p>
+                            <p class="text-gray-600 text-sm">This Seva is performed everyday on Temple Timings.</p>
                         </div>
                         <div class="flex items-center space-x-4">
                             <span class="text-yellow-600 font-bold">₹101</span>
@@ -249,7 +249,7 @@
                     <div class="flex justify-between items-center border-b pb-4">
                         <div>
                             <h3 class="font-bold text-gray-800">19. Karpoora Aarthi</h3>
-                            <p class="text-gray-600 text-sm">This Seva is performed every Saturday.</p>
+                            <p class="text-gray-600 text-sm">This Seva is performed everyday on Temple Timings.</p>
                         </div>
                         <div class="flex items-center space-x-4">
                             <span class="text-yellow-600 font-bold">₹51</span>
@@ -282,7 +282,7 @@
                     <div class="flex justify-between items-center border-b pb-4">
                         <div>
                             <h3 class="font-bold text-gray-800">22. Chamundi Paniyara Seva</h3>
-                            <p class="text-gray-600 text-sm">This Seva is performed only on Sankrant Of Every Month. Comntact Temple Office for Timings.</p>
+                            <p class="text-gray-600 text-sm">This Seva is performed only on Sankrant Of Every Month. Contact Temple Office for Timings.</p>
                         </div>
                         <div class="flex items-center space-x-4">
                             <span class="text-yellow-600 font-bold">₹501</span>
@@ -336,8 +336,12 @@
                                 <span class="font-medium">Amount:</span>
                                 <span id="selected-seva-amount" class="font-bold text-yellow-600">₹25001</span>
                             </div>
-                            <div class="mt-4 text-sm text-gray-600">
-                                <p>This seva will be performed the next Saturday of booking.</p>
+                            <div id="seva-date-info" class="mt-4 text-sm text-gray-600">
+                                <p id="seva-date-text">This seva will be performed the next Saturday of booking.</p>
+                                <div id="date-selection" class="mt-2 hidden">
+                                    <label for="seva-date" class="block text-gray-700 mb-1">Select Date:</label>
+                                    <input type="date" id="seva-date" class="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-yellow-500">
+                                </div>
                             </div>
                         </div>
 
@@ -445,7 +449,7 @@
                     <span id="confirmation-date" class="font-bold">Next Saturday</span>
                 </div>
                 <div class="mb-2 text-sm text-gray-600">
-                    <p>This seva will be performed next Saturday.</p>
+                    <p id="confirmation-date-info">This seva will be performed next Saturday.</p>
                 </div>
                 <div class="flex justify-between">
                     <span class="font-medium">Amount Paid:</span>
@@ -505,6 +509,32 @@
             time: ''
         };
 
+        // Helper function to get seva type
+        function getSevaType(name) {
+            const nextSaturdaySevas = [
+                'Sarva Seva', 'Maha Pooja', 'Poorna Alankara Seva', 
+                'Deepa Alankara Seva', 'Annadana Seva', 'Maha Naivedya', 
+                'Navadurga Pooja', 'Laxmi Kayee', 'Prashne'
+            ];
+            const dailySevas = [
+                'Pushpa Pooja', 'Durga Pooja', 'Dattatreya Pooja', 
+                'Gaddige Pooja', 'Annjaneya Seva', 'Kalasha Sthana', 
+                'Kumkum Archane', 'Four Wheeler Pooja', 'Two Wheeler Pooja'
+            ];
+            const lastSaturdaySevas = [
+                'Dosha Nivarane (Single)', 'Dosha Nivarane (Family)'
+            ];
+            const sankrantSevas = ['Chamundi Paniyara Seva'];
+            const nagaPanchamiSevas = ['Naga Tanu'];
+
+            if (nextSaturdaySevas.includes(name)) return 'nextSaturday';
+            if (dailySevas.includes(name)) return 'daily';
+            if (lastSaturdaySevas.includes(name)) return 'lastSaturday';
+            if (sankrantSevas.includes(name)) return 'sankrant';
+            if (nagaPanchamiSevas.includes(name)) return 'nagaPanchami';
+            return 'nextSaturday'; // default
+        }
+
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {
             
@@ -518,11 +548,33 @@
         function selectSeva(name, amount) {
             selectedSeva = {
                 name: name,
-                amount: amount
+                amount: amount,
+                type: getSevaType(name)
             };
             
             document.getElementById('selected-seva-name').textContent = name;
             document.getElementById('selected-seva-amount').textContent = `₹${amount}`;
+            
+            // Update date information based on seva type
+            const dateInfo = document.getElementById('seva-date-text');
+            const dateSelection = document.getElementById('date-selection');
+            
+            if (selectedSeva.type === 'daily') {
+                dateInfo.textContent = 'Please select a date for this seva:';
+                dateSelection.classList.remove('hidden');
+            } else if (selectedSeva.type === 'lastSaturday') {
+                dateInfo.textContent = 'This seva will be performed on the last Saturday of this month.';
+                dateSelection.classList.add('hidden');
+            } else if (selectedSeva.type === 'sankrant') {
+                dateInfo.textContent = 'This seva will be performed on the next Sankrant day.';
+                dateSelection.classList.add('hidden');
+            } else if (selectedSeva.type === 'nagaPanchami') {
+                dateInfo.textContent = 'This seva will be performed on the next Naga Panchami.';
+                dateSelection.classList.add('hidden');
+            } else {
+                dateInfo.textContent = 'This seva will be performed the next Saturday of booking.';
+                dateSelection.classList.add('hidden');
+            }
             
             // Show booking form section
             document.getElementById('booking-form-section').classList.remove('hidden');
@@ -533,16 +585,48 @@
 
         // Show confirmation modal
         function showConfirmationModal(bookingId) {
-            // Calculate next Saturday
-            const today = new Date();
-            const nextSaturday = new Date(today);
-            nextSaturday.setDate(today.getDate() + (6 - today.getDay() + 7) % 7);
-            const formattedDate = nextSaturday.toLocaleDateString('en-US', { 
-                weekday: 'long', 
-                month: 'long', 
-                day: 'numeric', 
-                year: 'numeric' 
-            });
+            let formattedDate;
+            const dateInfo = document.getElementById('confirmation-date-info');
+            
+            if (selectedSeva.type === 'daily') {
+                const selectedDate = new Date(document.getElementById('seva-date').value);
+                formattedDate = selectedDate.toLocaleDateString('en-US', { 
+                    weekday: 'long', 
+                    month: 'long', 
+                    day: 'numeric', 
+                    year: 'numeric' 
+                });
+                dateInfo.textContent = 'This seva will be performed on the selected date.';
+            } else if (selectedSeva.type === 'lastSaturday') {
+                const today = new Date();
+                const lastDay = new Date(today.getFullYear(), today.getMonth() + 1, 0);
+                const lastSaturday = new Date(lastDay);
+                lastSaturday.setDate(lastDay.getDate() - (lastDay.getDay() + 1) % 7);
+                formattedDate = lastSaturday.toLocaleDateString('en-US', { 
+                    weekday: 'long', 
+                    month: 'long', 
+                    day: 'numeric', 
+                    year: 'numeric' 
+                });
+                dateInfo.textContent = 'This seva will be performed on the last Saturday of this month.';
+            } else if (selectedSeva.type === 'sankrant') {
+                formattedDate = 'Next Sankrant Day';
+                dateInfo.textContent = 'This seva will be performed on the next Sankrant day.';
+            } else if (selectedSeva.type === 'nagaPanchami') {
+                formattedDate = 'Next Naga Panchami';
+                dateInfo.textContent = 'This seva will be performed on the next Naga Panchami.';
+            } else {
+                const today = new Date();
+                const nextSaturday = new Date(today);
+                nextSaturday.setDate(today.getDate() + (6 - today.getDay() + 7) % 7);
+                formattedDate = nextSaturday.toLocaleDateString('en-US', { 
+                    weekday: 'long', 
+                    month: 'long', 
+                    day: 'numeric', 
+                    year: 'numeric' 
+                });
+                dateInfo.textContent = 'This seva will be performed next Saturday.';
+            }
 
             // Update modal with booking details
             document.getElementById('booking-id').textContent = bookingId;
@@ -595,6 +679,43 @@
             // Generate booking ID
             const bookingId = 'DB' + Date.now().toString().slice(-6);
             
+            // Format date based on seva type
+            let formattedDate;
+            if (selectedSeva.type === 'daily') {
+                const selectedDate = new Date(document.getElementById('seva-date').value);
+                formattedDate = selectedDate.toLocaleDateString('en-US', { 
+                    weekday: 'long', 
+                    month: 'long', 
+                    day: 'numeric', 
+                    year: 'numeric' 
+                });
+            } else if (selectedSeva.type === 'lastSaturday') {
+                const today = new Date();
+                const lastDay = new Date(today.getFullYear(), today.getMonth() + 1, 0);
+                const lastSaturday = new Date(lastDay);
+                lastSaturday.setDate(lastDay.getDate() - (lastDay.getDay() + 1) % 7);
+                formattedDate = lastSaturday.toLocaleDateString('en-US', { 
+                    weekday: 'long', 
+                    month: 'long', 
+                    day: 'numeric', 
+                    year: 'numeric' 
+                });
+            } else if (selectedSeva.type === 'sankrant') {
+                formattedDate = 'Next Sankrant Day';
+            } else if (selectedSeva.type === 'nagaPanchami') {
+                formattedDate = 'Next Naga Panchami';
+            } else {
+                const today = new Date();
+                const nextSaturday = new Date(today);
+                nextSaturday.setDate(today.getDate() + (6 - today.getDay() + 7) % 7);
+                formattedDate = nextSaturday.toLocaleDateString('en-US', { 
+                    weekday: 'long', 
+                    month: 'long', 
+                    day: 'numeric', 
+                    year: 'numeric' 
+                });
+            }
+
             // Prepare email parameters
             const templateParams = {
                 to_email: email, // Send to user's email
@@ -602,12 +723,12 @@
                 from_name: "Divine Blessings Temple",
                 reply_to: "info@divineblessings.com",
                 subject: `Seva Booking Confirmation - ${bookingId}`,
-                message: `Dear SDDD,\n\n
+                message: `Dear ${fullName},\n\n
 Seva booking has been confirmed with the following details:\n\n
 Booking ID: ${bookingId}\n
 Seva Name: ${selectedSeva.name}\n
 Amount: ₹${selectedSeva.amount}\n
-Date: Next Saturday\n\n
+Date: ${formattedDate}\n\n
 Personal Details:\n
 Full Name: ${fullName}\n
 Email: ${email}\n
