@@ -6,6 +6,7 @@
     <title>Online Seva Booking</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" type="images/png" href="https://github.com/SDDD1964/website/blob/main/download.png?raw=true">
     <style>
@@ -684,7 +685,10 @@
             document.getElementById('payment-modal').classList.add('hidden');
         }
 
-        // Verify payment (simulated)
+        // SheetDB API endpoint (replace with your actual SheetDB endpoint)
+        const SHEETDB_API_URL = 'https://sheetdb.io/api/v1/vp1881taj8uzh';
+        
+        // Verify payment and save to Excel
         function verifyPayment() {
             // Show loading modal
             document.getElementById('loading-modal').classList.remove('hidden');
@@ -763,6 +767,37 @@ Shree Dattatreya Durgambika Mandir Marg, Subash Nagar Asalpha, Ghatkopar West, M
 +91 7777078349`
             };
 
+            // Save data to Excel via SheetDB
+            const excelData = {
+                data: [{
+                    'Booking ID': bookingId,
+                    'Full Name': fullName,
+                    'Email': email,
+                    'Phone': phone,
+                    'Address': address,
+                    'Seva Name': selectedSeva.name,
+                    'Amount': selectedSeva.amount,
+                    'Date': formattedDate,
+                    'Questions': anyQuestions,
+                    'Timestamp': new Date().toISOString()
+                }]
+            };
+
+            fetch(SHEETDB_API_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(excelData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Successfully saved to Excel:', data);
+            })
+            .catch((error) => {
+                console.error('Error saving to Excel:', error);
+            });
+
             // Simulate processing delay (2 seconds)
             setTimeout(function() {
                 // Send email
@@ -804,3 +839,4 @@ Shree Dattatreya Durgambika Mandir Marg, Subash Nagar Asalpha, Ghatkopar West, M
 </body>
 
 </html>
+
