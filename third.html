@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shree Dattatreya Durgambika Devasthana - Online Seva Booking</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="icon" type="images/png" href="https://github.com/SDDD1964/website/blob/main/download.png?raw=true">
+    <style>
+        :root {
+            --saffron: #FF9933;
+            --deep-saffron: #E85D04;
+            --gold: #FFD700;
+            --maroon: #800000;
+            --cream: #FFF8E7;
+            --deep-cream: #F5E6D3;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--cream);
+            overflow-x: hidden;
+        }
+
+        .font-traditional {
+            font-family: 'Cinzel', serif;
+        }
+
+        /* Floating Animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        @keyframes float-reverse {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(-5deg); }
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(255, 153, 51, 0.4); }
+            50% { box-shadow: 0 0 40px rgba(255, 153, 51, 0.8), 0 0 60px rgba(255, 215, 0, 0.4); }
+        }
+
+        @keyframes bell-ring {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(15deg); }
+            75% { transform: rotate(-15deg); }
+        }
+
+        @keyframes lotus-float {
+            0%, 100% { transform: translateY(0) scale(1); opacity: 0.6; }
+            50% { transform: translateY(-30px) scale(1.1); opacity: 0.8; }
+        }
+
+        @keyframes fade-in-up {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -1000px 0; }
+            100% { background-position: 1000px 0; }
+        }
+
+        .animate-float { animation: float 6s ease-in-out infinite; }
+        .animate-float-reverse { animation: float-reverse 5s ease-in-out infinite; }
+        .animate-glow { animation: glow 3s ease-in-out infinite; }
+        .animate-bell { animation: bell-ring 2s ease-in-out infinite; }
+        .animate-lotus { animation: lotus-float 8s ease-in-out infinite; }
+        .animate-fade-in { animation: fade-in-up 0.6s ease-out forwards; }
+        
+        .shimmer-bg {
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            background-size: 1000px 100%;
+            animation: shimmer 2s infinite;
+        }
+
+        /* Decorative Elements */
+        .lotus-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 10 Q40 25 30 40 Q20 25 30 10' fill='none' stroke='%23FF9933' stroke-width='0.5' opacity='0.2'/%3E%3C/svg%3E");
+        }
+
+        .om-symbol {
+            background: linear-gradient(135deg, var(--saffron), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--cream);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--saffron);
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--deep-saffron);
+        }
+
+        /* Selection Card Styles */
+        .seva-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid transparent;
+        }
+        
+        .seva-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(255, 153, 51, 0.2);
+        }
+        
+        .seva-card.selected {
+            border-color: var(--saffron);
+            background: linear-gradient(135deg, rgba(255, 153, 51, 0.1), rgba(255, 215, 0, 0.1));
+            box-shadow: 0 0 30px rgba(255, 153, 51, 0.3);
+        }
+
+        .seva-card.selected::before {
+            content: '✓';
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: var(--saffron);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        /* Traditional Border */
+        .traditional-border {
+            position: relative;
+            border: 3px solid var(--gold);
+            border-radius: 12px;
+        }
+        
+        .traditional-border::before {
+            content: '';
+            position: absolute;
+            top: -6px; left: -6px; right: -6px; bottom: -6px;
+            border: 2px solid var(--maroon);
+            border-radius: 16px;
+            pointer-events: none;
+        }
+
+        /* Button Styles */
+        .btn-primary {
+            background: linear-gradient(135deg, var(--saffron), var(--deep-saffron));
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(232, 93, 4, 0.4);
+        }
+        
+        .btn-primary::after {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: 0.5s;
+        }
+        
+        .btn-primary:hover::after {
+            left: 100%;
+        }
+
+        /* Input Focus */
+        .divine-input:focus {
+            border-color: var(--saffron);
+            box-shadow: 0 0 0 3px rgba(255, 153, 51, 0.2);
+        }
+
+        /* Background Decorations */
+        .bg-decoration {
+            position: fixed;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .diya {
+            width: 40px;
+            height: 40px;
+            background: radial-gradient(circle, #FFD700, #FF9933, transparent);
+            border-radius: 50%;
+            filter: blur(2px);
+            opacity: 0.6;
+        }
+
+        /* QR Code Placeholder */
+        .qr-placeholder {
+            background: linear-gradient(135deg, #f5f5f5, #e0e0e0);
+            border: 2px dashed var(--maroon);
+        }
+
+        /* Success Animation */
+        @keyframes success-pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .success-icon {
+            animation: success-pulse 2s ease-in-out infinite;
+        }
+
+        /* Step Indicator */
+        .step-active {
+            background: var(--saffron);
+            color: white;
+        }
+        
+        .step-completed {
+            background: var(--gold);
+            color: var(--maroon);
+        }
+
+        /* Hidden sections */
+        .section-hidden {
+            display: none;
+            opacity: 0;
+        }
+        
+        .section-visible {
+            display: block;
+            animation: fade-in-up 0.6s ease-out forwards;
+        }
+
+        /* Date Badge */
+        .seva-date-badge {
+            background: linear-gradient(135deg, var(--maroon), #a52a2a);
+            color: white;
+            font-size: 0.75rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body class="lotus-pattern min-h-screen relative">
+
+    <!-- Floating Background Decorations -->
+    <div class="bg-decoration top-20 left-10 animate-float">
+        <div class="diya"></div>
+    </div>
+    <div class="bg-decoration top-40 right-20 animate-float-reverse" style="animation-delay: 2s;">
+        <div class="diya" style="width: 30px; height: 30px;"></div>
+    </div>
+    <div class="bg-decoration bottom-40 left-20 animate-lotus" style="animation-delay: 1s;">
+        <i data-lucide="flower-2" class="text-orange-300 w-12 h-12 opacity-40"></i>
+    </div>
+    <div class="bg-decoration bottom-20 right-10 animate-lotus" style="animation-delay: 3s;">
+        <i data-lucide="flower-2" class="text-yellow-500 w-16 h-16 opacity-30"></i>
+    </div>
+
+    <!-- Header -->
+    <header class="relative z-10 bg-gradient-to-r from-orange-600 via-orange-500 to-yellow-500 text-white shadow-2xl">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <div class="bg-white/20 p-1 rounded-full backdrop-blur-sm border-2 border-yellow-400/50 shadow-lg">
+                        <img src="https://github.com/SDDD1964/website/blob/main/download.png?raw=true" alt="Shree Dattatreya Durgambika Devasthana Logo" class="w-14 h-14 rounded-full object-cover">
+                    </div>
+                    <div>
+                        <h1 class="font-traditional text-2xl md:text-3xl font-bold tracking-wider text-yellow-100">
+                            Shree Dattatreya Durgambika Devasthana
+                        </h1>
+                        <p class="text-orange-100 text-sm md:text-base font-medium">Conducted by: Shree Dattatreya Mitra Bhajana Mandali (R.)</p>
+                    </div>
+                </div>
+                <div class="hidden md:flex items-center space-x-2 text-yellow-100">
+                    <i data-lucide="map-pin" class="w-5 h-5"></i>
+                    <span class="text-sm">Asalpha, Mumbai</span>
+                </div>
+            </div>
+        </div>
+        <!-- Decorative Bottom Border -->
+        <div class="h-2 bg-gradient-to-r from-yellow-400 via-orange-500 to-yellow-400"></div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="relative z-10 container mx-auto px-4 py-8 max-w-6xl">
+
+        <!-- Hero Section -->
+        <div class="text-center mb-12 animate-fade-in">
+            <div class="inline-block mb-4">
+                <span class="text-6xl om-symbol font-traditional font-bold">ॐ</span>
+            </div>
+            <h2 class="font-traditional text-3xl md:text-4xl font-bold text-orange-800 mb-4">
+                Online Seva Booking
+            </h2>
+            <p class="text-gray-700 max-w-2xl mx-auto text-lg leading-relaxed">
+                Welcome to the divine portal of Shree Dattatreya Durgambika Devasthana. 
+                Select your preferred sevas and receive the blessings of the Almighty.
+            </p>
+            <div class="mt-6 flex justify-center items-center space-x-4 text-orange-700">
+                <span class="flex items-center"><i data-lucide="flame" class="w-5 h-5 mr-2 text-red-600"></i> Divine Blessings</span>
+                <span class="w-1 h-1 bg-orange-400 rounded-full"></span>
+                <span class="flex items-center"><i data-lucide="heart" class="w-5 h-5 mr-2 text-red-600"></i> Spiritual Peace</span>
+                <span class="w-1 h-1 bg-orange-400 rounded-full"></span>
+                <span class="flex items-center"><i data-lucide="sparkles" class="w-5 h-5 mr-2 text-yellow-600"></i> Prosperity</span>
+            </div>
+        </div>
+
+        <!-- Progress Steps -->
+        <div class="mb-8 flex justify-center items-center space-x-4 md:space-x-8">
+            <div class="flex items-center space-x-2">
+                <div id="step1-indicator" class="w-10 h-10 rounded-full step-active flex items-center justify-center font-bold transition-all">1</div>
+                <span class="hidden md:block text-sm font-medium text-orange-800">Select Seva</span>
+            </div>
+            <div class="w-12 h-1 bg-orange-200 rounded"></div>
+            <div class="flex items-center space-x-2">
+                <div id="step2-indicator" class="w-10 h-10 rounded-full bg-gray-200 text-gray-600 flex items-center justify-center font-bold transition-all">2</div>
+                <span class="hidden md:block text-sm font-medium text-gray-600">Details</span>
+            </div>
+            <div class="w-12 h-1 bg-orange-200 rounded"></div>
+            <div class="flex items-center space-x-2">
+                <div id="step3-indicator" class="w-10 h-10 rounded-full bg-gray-200 text-gray-600 flex items-center justify-center font-bold transition-all">3</div>
+                <span class="hidden md:block text-sm font-medium text-gray-600">Payment</span>
+            </div>
+            <div class="w-12 h-1 bg-orange-200 rounded"></div>
+            <div class="flex items-center space-x-2">
+                <div id="step4-indicator" class="w-10 h-10 rounded-full bg-gray-200 text-gray-600 flex items-center justify-center font-bold transition-all">4</div>
+                <span class="hidden md:block text-sm font-medium text-gray-600">Confirm</span>
+            </div>
+        </div>
+
+        <!-- Section 1: Available Sevas -->
+        <div id="seva-section" class="section-visible">
+            <div class="traditional-border bg-white/80 backdrop-blur-md p-6 md:p-8 mb-8 shadow-xl">
+                <div class="flex items-center justify-between mb-6">
+                    <h3 class="font-traditional text-2xl font-bold text-orange-900 flex items-center">
+                        <i data-lucide="hand-heart" class="w-6 h-6 mr-3 text-red-600"></i>
+                        Available Sevas
+                    </h3>
+                    <div class="bg-orange-100 px-4 py-2 rounded-full text-orange-800 font-medium text-sm">
+                        <span id="selected-count">0</span> Sevas Selected
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="seva-grid">
+                    <!-- Seva Cards will be generated by JS -->
+                </div>
+
+                <!-- Selected Sevas Summary -->
+                <div id="selection-summary" class="mt-8 p-6 bg-gradient-to-r from-orange-50 to-yellow-50 rounded-lg border-2 border-orange-200 hidden">
+                    <h4 class="font-traditional text-lg font-bold text-orange-900 mb-4">Selected Sevas Summary</h4>
+                    <div id="selected-sevas-list" class="space-y-2 mb-4"></div>
+                    <div class="border-t-2 border-orange-200 pt-4 flex justify-between items-center">
+                        <span class="font-bold text-gray-700">Total Amount:</span>
+                        <span class="font-traditional text-2xl font-bold text-orange-700">₹<span id="total-amount">0</span></span>
+                    </div>
+                </div>
+
+                <div class="mt-8 text-center">
+                    <button id="proceed-to-details" class="btn-primary px-8 py-4 rounded-full text-white font-bold text-lg shadow-lg disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                        Proceed with Selected Sevas
+                        <i data-lucide="arrow-right" class="inline-block w-5 h-5 ml-2"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 2: Personal Details -->
+        <div id="details-section" class="section-hidden">
+            <div class="traditional-border bg-white/80 backdrop-blur-md p-6 md:p-8 mb-8 shadow-xl max-w-2xl mx-auto">
+                <button onclick="showSection('seva')" class="mb-4 text-orange-600 hover:text-orange-800 flex items-center font-medium transition-colors">
+                    <i data-lucide="arrow-left" class="w-4 h-4 mr-2"></i> Back to Sevas
+                </button>
+
+                <h3 class="font-traditional text-2xl font-bold text-orange-900 mb-6 flex items-center">
+                    <i data-lucide="user-circle" class="w-6 h-6 mr-3 text-red-600"></i>
+                    Devotee Details
+                </h3>
+
+                <form id="devotee-form" class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Full Name *</label>
+                            <div class="relative">
+                                <i data-lucide="user" class="absolute left-3 top-3 w-5 h-5 text-orange-400"></i>
+                                <input type="text" id="devotee-name" required class="divine-input w-full pl-10 pr-4 py-3 border-2 border-orange-200 rounded-lg focus:outline-none transition-all" placeholder="Enter your full name">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Phone Number *</label>
+                            <div class="relative">
+                                <i data-lucide="phone" class="absolute left-3 top-3 w-5 h-5 text-orange-400"></i>
+                                <input type="tel" id="devotee-phone" required pattern="[0-9]{10}" class="divine-input w-full pl-10 pr-4 py-3 border-2 border-orange-200 rounded-lg focus:outline-none transition-all" placeholder="10 digit mobile number">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Email ID (Optional)</label>
+                        <div class="relative">
+                            <i data-lucide="mail" class="absolute left-3 top-3 w-5 h-5 text-orange-400"></i>
+                            <input type="email" id="devotee-email" class="divine-input w-full pl-10 pr-4 py-3 border-2 border-orange-200 rounded-lg focus:outline-none transition-all" placeholder="For receipt and updates">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Special Request (Optional)</label>
+                        <textarea id="devotee-request" rows="3" class="divine-input w-full px-4 py-3 border-2 border-orange-200 rounded-lg focus:outline-none transition-all" placeholder="Any specific prayer or intention..."></textarea>
+                    </div>
+
+                    <div class="bg-orange-50 p-4 rounded-lg border border-orange-200">
+                        <h4 class="font-bold text-orange-900 mb-2">Booking Summary</h4>
+                        <div id="booking-summary-details" class="text-sm text-gray-700 space-y-1"></div>
+                        <div class="mt-2 pt-2 border-t border-orange-200 font-bold text-orange-800">
+                            Total: ₹<span id="details-total">0</span>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-primary w-full py-4 rounded-lg text-white font-bold text-lg shadow-lg">
+                        Proceed to Payment
+                        <i data-lucide="credit-card" class="inline-block w-5 h-5 ml-2"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Section 3: Payment -->
+        <div id="payment-section" class="section-hidden">
+            <div class="traditional-border bg-white/80 backdrop-blur-md p-6 md:p-8 mb-8 shadow-xl max-w-4xl mx-auto">
+                <button onclick="showSection('details')" class="mb-4 text-orange-600 hover:text-orange-800 flex items-center font-medium transition-colors">
+                    <i data-lucide="arrow-left" class="w-4 h-4 mr-2"></i> Back to Details
+                </button>
+
+                <h3 class="font-traditional text-2xl font-bold text-orange-900 mb-6 flex items-center">
+                    <i data-lucide="banknote" class="w-6 h-6 mr-3 text-red-600"></i>
+                    Payment Details
+                </h3>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- QR Code Section -->
+                    <div class="space-y-6">
+                        <div class="bg-gradient-to-br from-orange-50 to-yellow-50 p-6 rounded-xl border-2 border-orange-200 text-center">
+                            <h4 class="font-traditional text-lg font-bold text-orange-900 mb-4">Scan to Pay</h4>
+                            <div class="qr-placeholder w-48 h-48 mx-auto rounded-lg flex items-center justify-center mb-4 bg-white">
+                                <div class="text-center p-4">
+                                    <img src="https://github.com/SDDD1964/website/blob/main/IMG_20250820_205141.png?raw=true${selectedSeva.amount}" 
+                             alt="Payment QR Code" 
+                             class="w-full h-full object-contain">
+                                    <p class="text-xs text-gray-500">UPI QR Code</p>
+                                </div>
+                            </div>
+                            <p class="text-sm text-gray-600 mb-2">UPI ID:</p>
+                            <p class="font-bold text-orange-800 text-lg select-all">7777078349@hdfcbank</p>
+                        </div>
+
+                        <div class="bg-red-50 p-4 rounded-lg border border-red-200">
+                            <h5 class="font-bold text-red-800 mb-2 flex items-center">
+                                <i data-lucide="alert-circle" class="w-4 h-4 mr-2"></i>
+                                Important
+                            </h5>
+                            <p class="text-sm text-red-700">Please complete the payment before uploading screenshot. Bookings will be confirmed only after payment verification.</p>
+                        </div>
+                    </div>
+
+                    <!-- Bank Details & Upload -->
+                    <div class="space-y-6">
+                        <div class="bg-gray-50 p-6 rounded-xl border-2 border-gray-200">
+                            <h4 class="font-traditional text-lg font-bold text-gray-800 mb-4 flex items-center">
+                                <i data-lucide="building-2" class="w-5 h-5 mr-2 text-orange-600"></i>
+                                Bank Transfer Details
+                            </h4>
+                            <div class="space-y-3 text-sm">
+                                <div class="flex justify-between border-b border-gray-200 pb-2">
+                                    <span class="text-gray-600">Account Name:</span>
+                                    <span class="font-semibold text-gray-800">Shree Dattatreya Mitra Bhajana Mandali</span>
+                                </div>
+                                <div class="flex justify-between border-b border-gray-200 pb-2">
+                                    <span class="text-gray-600">Account Number:</span>
+                                    <span class="font-semibold text-gray-800 select-all">50200076361677</span>
+                                </div>
+                                <div class="flex justify-between border-b border-gray-200 pb-2">
+                                    <span class="text-gray-600">IFSC Code:</span>
+                                    <span class="font-semibold text-gray-800 select-all">HDFC0000239</span>
+                                </div>
+                                <div class="flex justify-between border-b border-gray-200 pb-2">
+                                    <span class="text-gray-600">Bank:</span>
+                                    <span class="font-semibold text-gray-800">HDFC Bank</span>
+                                </div>
+                                <div class="flex justify-between pt-2">
+                                    <span class="text-gray-600">UPI ID:</span>
+                                    <span class="font-semibold text-gray-800">7777078349@hdfcbank</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-2">Upload Payment Screenshot *</label>
+                                <div class="relative">
+                                    <input type="file" id="payment-screenshot" accept="image/*" required class="hidden" onchange="previewImage(this, 'screenshot-preview')">
+                                    <label for="payment-screenshot" class="cursor-pointer block w-full p-4 border-2 border-dashed border-orange-300 rounded-lg hover:border-orange-500 hover:bg-orange-50 transition-all text-center">
+                                        <i data-lucide="upload-cloud" class="w-8 h-8 text-orange-400 mx-auto mb-2"></i>
+                                        <span class="text-orange-600 font-medium">Click to upload screenshot</span>
+                                        <p class="text-xs text-gray-500 mt-1">JPG, PNG up to 5MB</p>
+                                    </label>
+                                </div>
+                                <div id="screenshot-preview" class="mt-2 hidden">
+                                    <img src="" alt="Preview" class="max-h-32 rounded-lg border-2 border-orange-200 mx-auto">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-2">Transaction ID / UTR Number *</label>
+                                <div class="relative">
+                                    <i data-lucide="hash" class="absolute left-3 top-3 w-5 h-5 text-orange-400"></i>
+                                    <input type="text" id="transaction-id" required class="divine-input w-full pl-10 pr-4 py-3 border-2 border-orange-200 rounded-lg focus:outline-none transition-all" placeholder="Enter transaction reference number">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-2">Payment Mode *</label>
+                                <select id="payment-mode" required class="divine-input w-full px-4 py-3 border-2 border-orange-200 rounded-lg focus:outline-none transition-all bg-white">
+                                    <option value="">Select Payment Mode</option>
+                                    <option value="upi">UPI Payment</option>
+                                    <option value="bank">Bank Transfer</option>
+                                    <option value="cash">Net Banking</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="bg-orange-50 p-4 rounded-lg border border-orange-200">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-bold text-orange-900">Amount to Pay:</span>
+                                <span class="font-traditional text-2xl font-bold text-orange-700">₹<span id="payment-total">0</span></span>
+                            </div>
+                        </div>
+
+                        <button onclick="confirmBooking()" class="btn-primary w-full py-4 rounded-lg text-white font-bold text-lg shadow-lg">
+                            Confirm Booking
+                            <i data-lucide="check-circle" class="inline-block w-5 h-5 ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 4: Confirmation -->
+        <div id="confirmation-section" class="section-hidden">
+            <div class="traditional-border bg-white/80 backdrop-blur-md p-8 md:p-12 mb-8 shadow-xl max-w-2xl mx-auto text-center">
+                <div class="success-icon mb-6">
+                    <div class="w-24 h-24 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center mx-auto shadow-lg">
+                        <i data-lucide="check" class="w-12 h-12 text-white"></i>
+                    </div>
+                </div>
+
+                <h3 class="font-traditional text-3xl font-bold text-green-800 mb-2">Seva Booking Confirmed!</h3>
+                <p class="text-gray-600 mb-8">May the blessings of Shree Dattatreya and Durgambika be with you.</p>
+
+                <div class="bg-gradient-to-r from-orange-50 to-yellow-50 p-6 rounded-xl border-2 border-orange-200 mb-8">
+                    <p class="text-sm text-gray-600 mb-2">Your Seva Booking ID</p>
+                    <h2 class="font-traditional text-3xl font-bold text-orange-800 tracking-wider" id="booking-id">DDD-2024-XXXXX</h2>
+                    <p class="text-xs text-gray-500 mt-2">Please save this ID for future reference</p>
+                </div>
+
+                <div class="text-left bg-gray-50 p-6 rounded-lg mb-8 space-y-3">
+                    <div class="flex justify-between border-b border-gray-200 pb-2">
+                        <span class="text-gray-600">Devotee Name:</span>
+                        <span class="font-semibold text-gray-800" id="confirm-name">-</span>
+                    </div>
+                    <div class="flex justify-between border-b border-gray-200 pb-2">
+                        <span class="text-gray-600">Contact:</span>
+                        <span class="font-semibold text-gray-800" id="confirm-phone">-</span>
+                    </div>
+                    <div class="flex justify-between border-b border-gray-200 pb-2">
+                        <span class="text-gray-600">Selected Sevas:</span>
+                        <span class="font-semibold text-gray-800 text-right max-w-xs" id="confirm-sevas">-</span>
+                    </div>
+                    <div class="flex justify-between border-b border-gray-200 pb-2">
+                        <span class="text-gray-600">Total Amount:</span>
+                        <span class="font-semibold text-orange-800">₹<span id="confirm-amount">0</span></span>
+                    </div>
+                    <div class="flex justify-between border-b border-gray-200 pb-2">
+                        <span class="text-gray-600">Transaction ID:</span>
+                        <span class="font-semibold text-gray-800" id="confirm-transaction">-</span>
+                    </div>
+                    <div class="pt-2 border-b border-gray-200 pb-2" id="performing-dates-container">
+                        <span class="text-gray-600 block mb-2 font-semibold">Seva Performing Date(s):</span>
+                        <div id="confirm-performing-dates" class="text-sm text-gray-800 space-y-1"></div>
+                    </div>
+                    <div class="pt-2" id="screenshot-display-container">
+                        <span class="text-gray-600 block mb-2 text-sm font-semibold">Payment Screenshot Submitted:</span>
+                        <div class="max-h-32 overflow-hidden rounded-lg border-2 border-orange-200 inline-block bg-white">
+                            <img id="confirm-screenshot-img" src="" alt="Payment Screenshot" class="max-h-32 object-cover" style="display: none;" onload="this.style.display='block'; this.parentElement.style.display='inline-block';" onerror="this.style.display='none'; this.parentElement.style.display='none'; document.getElementById('screenshot-display-container').style.display='none';">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-blue-50 p-4 rounded-lg border border-blue-200 mb-8">
+                    <p class="text-blue-800 flex items-center justify-center">
+                        <i data-lucide="mail-check" class="w-5 h-5 mr-2"></i>
+                        <span id="receipt-message">Seva receipt will be sent to your registered phone number shortly.</span>
+                    </p>
+                    <p class="text-xs text-blue-600 mt-1">For any queries, contact: +91 77770 78349 email-id: dattadurga1964@gmail.com</p>
+                </div>
+
+                <div class="space-x-4">
+                    <button onclick="location.reload()" class="btn-primary px-8 py-3 rounded-lg text-white font-bold shadow-lg inline-flex items-center">
+                        <i data-lucide="home" class="w-5 h-5 mr-2"></i>
+                        New Booking
+                    </button>
+                </div>
+
+                <div class="mt-8 pt-8 border-t border-orange-200">
+                    <p class="text-orange-800 font-traditional text-lg">ॐ श्री गुरु दत्तात्रेय नमः</p>
+                    <p class="text-sm text-gray-500 mt-2">Shree Dattatreya Durgambika Devasthana</p>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="relative z-10 bg-gradient-to-r from-orange-800 via-orange-900 to-red-900 text-white py-8 mt-16">
+        <div class="container mx-auto px-4 text-center">
+            <div class="flex justify-center items-center space-x-6 mb-4">
+                <a href="https://www.facebook.com/sdddevasthana/" class="hover:text-yellow-300 transition-colors"><i data-lucide="facebook" class="w-5 h-5"></i></a>
+                <a href="https://www.instagram.com/sdddevasthana/" class="hover:text-yellow-300 transition-colors"><i data-lucide="instagram" class="w-5 h-5"></i></a>
+                <a href="https://www.youtube.com/@sdddevasthana" class="hover:text-yellow-300 transition-colors"><i data-lucide="youtube" class="w-5 h-5"></i></a>
+                <a href="https://wa.me/917777078349" class="hover:text-yellow-300 transition-colors"><i data-lucide="phone" class="w-5 h-5"></i></a>
+            </div>
+            <p class="text-orange-200 text-sm">Shree Dattatreya Durgambika Devasthana. All rights reserved.</p>
+            <p class="text-orange-300 text-xs mt-2">Jai Shree Dattatreya Durgambika Amma</p>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Initialize EmailJS
+        emailjs.init("kCODbNQD4icurCU04");
+
+        // Seva Data with Frequency Information
+        const sevas = [
+            { id: 1, name: "Sarva Seva", price: 25001, description: "This Seva is performed every Saturday.", frequency: "saturday" },
+            { id: 2, name: "Maha Pooja", price: 15001, description: "This Seva is performed every Saturday.", frequency: "saturday" },
+            { id: 3, name: "Poorna Alankara Seva", price: 10001, description: "This Seva is performed every Saturday.", frequency: "saturday" },
+            { id: 4, name: "Deepa Alankara Seva", price: 7001, description: "This Seva is performed every Saturday.", frequency: "saturday" },
+            { id: 5, name: "Annadana Seva", price: 7001, description: "This Seva is performed every Saturday.", frequency: "saturday" },
+            { id: 6, name: "Maha Naivedya", price: 5001, description: "This Seva is performed every Saturday.", frequency: "saturday" },
+            { id: 7, name: "Alankara Seva", price: 2001, description: "This Seva is performed every Saturday.", frequency: "saturday" },
+            { id: 8, name: "Navadurga Pooja", price: 1001, description: "This Seva is performed every Saturday.", frequency: "saturday" },
+            { id: 9, name: "Puspha Pooja", price: 501, description: "This Seva is performed everyday on Temple Timings.", frequency: "daily" },
+            { id: 10, name: "Durga Pooja", price: 301, description: "This Seva is performed everyday on Temple Timings.", frequency: "daily" },
+            { id: 11, name: "Dattatreya Pooja", price: 301, description: "This Seva is performed everyday on Temple Timings.", frequency: "daily" },
+            { id: 12, name: "Gaddige Pooja", price: 251, description: "This Seva is performed everyday on Temple Timings.", frequency: "daily" },
+            { id: 13, name: "Annjaneya Seva", price: 301, description: "This Seva is performed everyday on Temple Timings.", frequency: "daily" },
+            { id: 14, name: "Laxmi Kayee", price: 251, description: "This Seva is performed every Saturday. Be available during Devi Darshana for Laxmi Kayee.", frequency: "saturday" },
+            { id: 15, name: "Kalasha Sthana", price: 251, description: "This Seva is performed everyday on Temple Timings.", frequency: "daily" },
+            { id: 16, name: "Prashne", price: 201, description: "This Seva is performed every Saturday. Be available during Devi Darshana.", frequency: "saturday" },
+            { id: 17, name: "Naga Tanu", price: 151, description: "This Seva is performed on every Naga Panchami. Contact Temple Office for Details about the Timings.", frequency: "naga-panchami" },
+            { id: 18, name: "Kumkum Archane", price: 101, description: "This Seva is performed everyday on Temple Timings.", frequency: "daily" },
+            { id: 19, name: "Karpoora Aarthi", price: 51, description: "This Seva is performed everyday on Temple Timings.", frequency: "daily" },
+            { id: 20, name: "Annadana", price: 7001, description: "This Seva is performed every Saturday.", frequency: "saturday" },
+            { id: 21, name: "Shaswata Pooja", price: 2001, description: "This Seva is performed everyday on Temple Timings.", frequency: "daily" },
+            { id: 22, name: "Dosha Nivarane (Single)", price: 2501, description: "This Seva is performed on Last Saturday of every Month. Be Available during Chamundi Darshana.", frequency: "last-saturday" },
+            { id: 23, name: "Dosha Nivarane (Family)", price: 3501, description: "This Seva is performed on Last Saturday of every Month. Be Available during Chamundi Darshana.", frequency: "last-saturday" },
+            { id: 24, name: "Chamundi Paniyara Seva", price: 501, description: "This Seva is performed only on Sankrant Of Every Month. Contact Temple Office for Timings.", frequency: "sankrant" },
+            { id: 25, name: "Four Wheeler Pooja", price: 501, description: "This Seva is perfomed during Temple Timings. Contact Temple Office for more details.", frequency: "daily" },
+            { id: 26, name: "Two Wheeler Pooja", price: 251, description: "This Seva is perfomed during Temple Timings. Contact Temple Office for more details.", frequency: "daily" }
+        ];
+
+        let selectedSevas = [];
+        let bookingData = {};
+
+        // Date Calculation Functions
+        function formatDate(date) {
+            const options = { day: '2-digit', month: '2-digit', year: 'numeric', weekday: 'short' };
+            return date.toLocaleDateString('en-IN', options);
+        }
+
+        function getNextSaturday(date) {
+            const result = new Date(date);
+            const day = result.getDay();
+            const diff = 6 - day; // 6 is Saturday
+            if (diff <= 0) {
+                result.setDate(result.getDate() + (diff + 7));
+            } else {
+                result.setDate(result.getDate() + diff);
+            }
+            return result;
+        }
+
+        function getLastSaturdayOfMonth(date) {
+            const result = new Date(date.getFullYear(), date.getMonth() + 1, 0); // Last day of current month
+            while (result.getDay() !== 6) { // 6 is Saturday
+                result.setDate(result.getDate() - 1);
+            }
+            // If last Saturday has passed, get next month's last Saturday
+            if (result < date) {
+                result.setDate(1);
+                result.setMonth(result.getMonth() + 1);
+                result.setDate(0); // Last day of next month
+                while (result.getDay() !== 6) {
+                    result.setDate(result.getDate() - 1);
+                }
+            }
+            return result;
+        }
+
+        function getNextNagaPanchami(date) {
+            // Naga Panchami typically falls in July/August (Shravan month)
+            // Simplified calculation - returns next occurrence or contact message
+            const currentYear = date.getFullYear();
+            const currentMonth = date.getMonth();
+            
+            // Approximate dates for Naga Panchami (varies yearly based on Hindu calendar)
+            // Usually in July or August (month 6 or 7)
+            const possibleDates = [
+                new Date(currentYear, 6, 25), // July 25 (approximate)
+                new Date(currentYear, 7, 10)  // August 10 (approximate)
+            ];
+            
+            for (let d of possibleDates) {
+                if (d >= date) return d;
+            }
+            
+            // If both passed this year, return approximate date for next year
+            return new Date(currentYear + 1, 6, 25);
+        }
+
+        function getNextSankrant(date) {
+            // Sankranti usually falls on 14th, 15th, or 16th of each month
+            // We'll use the 15th as standard monthly Sankranti date
+            const result = new Date(date);
+            if (date.getDate() >= 15) {
+                result.setMonth(result.getMonth() + 1);
+            }
+            result.setDate(15);
+            return result;
+        }
+
+        function getPerformingDate(frequency) {
+            const today = new Date();
+            switch(frequency) {
+                case 'saturday':
+                    return getNextSaturday(today);
+                case 'last-saturday':
+                    return getLastSaturdayOfMonth(today);
+                case 'naga-panchami':
+                    return getNextNagaPanchami(today);
+                case 'sankrant':
+                    return getNextSankrant(today);
+                case 'daily':
+                default:
+                    return today;
+            }
+        }
+
+        // Get today's date string for min attribute
+        function getTodayString() {
+            const today = new Date();
+            return today.toISOString().split('T')[0];
+        }
+
+        // Initialize Seva Grid
+        function initializeSevas() {
+            const grid = document.getElementById('seva-grid');
+            const today = new Date();
+            const todayStr = getTodayString();
+            
+            grid.innerHTML = sevas.map(seva => {
+                const performingDate = getPerformingDate(seva.frequency);
+                const dateStr = formatDate(performingDate);
+                const isDaily = seva.frequency === 'daily';
+                
+                return `
+                <div class="seva-card relative bg-white rounded-xl p-6 shadow-md border-2 border-orange-100 hover:border-orange-300" id="seva-card-${seva.id}" data-frequency="${seva.frequency}">
+                    <div onclick="toggleSeva(${seva.id})" class="cursor-pointer">
+                        <div class="flex justify-between items-start mb-3">
+                            <div class="bg-orange-100 p-2 rounded-lg">
+                                <i data-lucide="flame" class="w-5 h-5 text-orange-600"></i>
+                            </div>
+                            <span class="font-traditional font-bold text-xl text-orange-800">₹${seva.price}</span>
+                        </div>
+                        <h4 class="font-traditional font-bold text-lg text-gray-800 mb-2">${seva.name}</h4>
+                        <p class="text-sm text-gray-600 mb-3">${seva.description}</p>
+                    </div>
+                    <div class="mt-3 pt-3 border-t border-orange-100">
+                        ${isDaily ? `
+                            <div class="space-y-2" onclick="event.stopPropagation()">
+                                <label class="text-xs text-gray-500 font-semibold block">Select Performing Date:</label>
+                                <input type="date" id="date-picker-${seva.id}" 
+                                    min="${todayStr}" 
+                                    class="divine-input w-full px-3 py-2 border-2 border-orange-200 rounded-lg text-sm focus:outline-none"
+                                    onchange="updateDailySevaDate(${seva.id}, this.value)"
+                                    onclick="event.stopPropagation()"
+                                    required>
+                                <p class="text-xs text-orange-600 font-medium" id="selected-date-display-${seva.id}" style="display: none;"></p>
+                            </div>
+                        ` : `
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs text-gray-500 font-semibold">Performing Date:</span>
+                                <span class="seva-date-badge" id="date-badge-${seva.id}">${dateStr}</span>
+                            </div>
+                        `}
+                    </div>
+                </div>
+            `}).join('');
+            lucide.createIcons();
+        }
+
+        // Update date for daily sevas when date picker changes
+        function updateDailySevaDate(sevaId, dateValue) {
+            const display = document.getElementById(`selected-date-display-${sevaId}`);
+            if (dateValue) {
+                const date = new Date(dateValue);
+                const dateStr = formatDate(date);
+                display.textContent = `Selected: ${dateStr}`;
+                display.style.display = 'block';
+                
+                // Store the selected date temporarily
+                const seva = sevas.find(s => s.id === sevaId);
+                seva.userSelectedDate = date;
+                seva.userSelectedDateStr = dateStr;
+            } else {
+                display.style.display = 'none';
+                const seva = sevas.find(s => s.id === sevaId);
+                seva.userSelectedDate = null;
+                seva.userSelectedDateStr = null;
+            }
+        }
+
+        // Toggle Seva Selection
+        function toggleSeva(id) {
+            const seva = sevas.find(s => s.id === id);
+            const card = document.getElementById(`seva-card-${id}`);
+            const frequency = card.getAttribute('data-frequency');
+            
+            // Check if it's a daily seva with date picker
+            if (frequency === 'daily') {
+                const datePicker = document.getElementById(`date-picker-${id}`);
+                if (!datePicker.value) {
+                    alert('Please select a performing date for this Seva');
+                    datePicker.focus();
+                    return;
+                }
+                
+                // Check if already selected
+                if (selectedSevas.find(s => s.id === id)) {
+                    selectedSevas = selectedSevas.filter(s => s.id !== id);
+                    card.classList.remove('selected');
+                } else {
+                    const selectedDate = new Date(datePicker.value + 'T00:00:00');
+                    selectedSevas.push({
+                        ...seva, 
+                        performingDate: selectedDate, 
+                        performingDateStr: seva.userSelectedDateStr || formatDate(selectedDate)
+                    });
+                    card.classList.add('selected');
+                }
+            } else {
+                // For scheduled sevas, use calculated date
+                const performingDate = getPerformingDate(frequency);
+                
+                if (selectedSevas.find(s => s.id === id)) {
+                    selectedSevas = selectedSevas.filter(s => s.id !== id);
+                    card.classList.remove('selected');
+                } else {
+                    selectedSevas.push({
+                        ...seva, 
+                        performingDate: performingDate, 
+                        performingDateStr: formatDate(performingDate)
+                    });
+                    card.classList.add('selected');
+                }
+            }
+            
+            updateSelectionSummary();
+        }
+
+        // Update Selection Summary
+        function updateSelectionSummary() {
+            const count = selectedSevas.length;
+            const total = selectedSevas.reduce((sum, s) => sum + s.price, 0);
+            
+            document.getElementById('selected-count').textContent = count;
+            document.getElementById('total-amount').textContent = total;
+            document.getElementById('details-total').textContent = total;
+            document.getElementById('payment-total').textContent = total;
+            
+            const summary = document.getElementById('selection-summary');
+            const list = document.getElementById('selected-sevas-list');
+            const proceedBtn = document.getElementById('proceed-to-details');
+            
+            if (count > 0) {
+                summary.classList.remove('hidden');
+                proceedBtn.disabled = false;
+                list.innerHTML = selectedSevas.map(s => `
+                    <div class="flex justify-between items-center text-sm border-b border-orange-200 pb-1">
+                        <div>
+                            <span class="text-gray-700 font-medium">${s.name}</span>
+                            <div class="text-xs text-orange-600">Date: ${s.performingDateStr}</div>
+                        </div>
+                        <span class="font-semibold text-orange-700">₹${s.price}</span>
+                    </div>
+                `).join('');
+            } else {
+                summary.classList.add('hidden');
+                proceedBtn.disabled = true;
+            }
+        }
+
+        // Show Section
+        function showSection(section) {
+            // Hide all sections
+            document.getElementById('seva-section').classList.add('section-hidden');
+            document.getElementById('seva-section').classList.remove('section-visible');
+            document.getElementById('details-section').classList.add('section-hidden');
+            document.getElementById('details-section').classList.remove('section-visible');
+            document.getElementById('payment-section').classList.add('section-hidden');
+            document.getElementById('payment-section').classList.remove('section-visible');
+            document.getElementById('confirmation-section').classList.add('section-hidden');
+            document.getElementById('confirmation-section').classList.remove('section-visible');
+            
+            // Update indicators
+            document.getElementById('step1-indicator').className = 'w-10 h-10 rounded-full bg-gray-200 text-gray-600 flex items-center justify-center font-bold transition-all';
+            document.getElementById('step2-indicator').className = 'w-10 h-10 rounded-full bg-gray-200 text-gray-600 flex items-center justify-center font-bold transition-all';
+            document.getElementById('step3-indicator').className = 'w-10 h-10 rounded-full bg-gray-200 text-gray-600 flex items-center justify-center font-bold transition-all';
+            document.getElementById('step4-indicator').className = 'w-10 h-10 rounded-full bg-gray-200 text-gray-600 flex items-center justify-center font-bold transition-all';
+            
+            // Show selected section
+            if (section === 'seva') {
+                document.getElementById('seva-section').classList.remove('section-hidden');
+                document.getElementById('seva-section').classList.add('section-visible');
+                document.getElementById('step1-indicator').className = 'w-10 h-10 rounded-full step-active flex items-center justify-center font-bold transition-all';
+            } else if (section === 'details') {
+                document.getElementById('details-section').classList.remove('section-hidden');
+                document.getElementById('details-section').classList.add('section-visible');
+                document.getElementById('step1-indicator').className = 'w-10 h-10 rounded-full step-completed flex items-center justify-center font-bold transition-all';
+                document.getElementById('step2-indicator').className = 'w-10 h-10 rounded-full step-active flex items-center justify-center font-bold transition-all';
+                
+                // Update booking summary in details
+                document.getElementById('booking-summary-details').innerHTML = selectedSevas.map(s => `
+                    <div class="flex justify-between items-center">
+                        <span>${s.name}</span>
+                        <span class="text-xs text-orange-600">${s.performingDateStr}</span>
+                        <span>₹${s.price}</span>
+                    </div>
+                `).join('');
+            } else if (section === 'payment') {
+                document.getElementById('payment-section').classList.remove('section-hidden');
+                document.getElementById('payment-section').classList.add('section-visible');
+                document.getElementById('step1-indicator').className = 'w-10 h-10 rounded-full step-completed flex items-center justify-center font-bold transition-all';
+                document.getElementById('step2-indicator').className = 'w-10 h-10 rounded-full step-completed flex items-center justify-center font-bold transition-all';
+                document.getElementById('step3-indicator').className = 'w-10 h-10 rounded-full step-active flex items-center justify-center font-bold transition-all';
+            } else if (section === 'confirmation') {
+                document.getElementById('confirmation-section').classList.remove('section-hidden');
+                document.getElementById('confirmation-section').classList.add('section-visible');
+                document.getElementById('step1-indicator').className = 'w-10 h-10 rounded-full step-completed flex items-center justify-center font-bold transition-all';
+                document.getElementById('step2-indicator').className = 'w-10 h-10 rounded-full step-completed flex items-center justify-center font-bold transition-all';
+                document.getElementById('step3-indicator').className = 'w-10 h-10 rounded-full step-completed flex items-center justify-center font-bold transition-all';
+                document.getElementById('step4-indicator').className = 'w-10 h-10 rounded-full step-active flex items-center justify-center font-bold transition-all';
+            }
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Proceed to Details
+        document.getElementById('proceed-to-details').addEventListener('click', () => {
+            showSection('details');
+        });
+
+        // Form Submission
+        document.getElementById('devotee-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            bookingData.name = document.getElementById('devotee-name').value;
+            bookingData.phone = document.getElementById('devotee-phone').value;
+            bookingData.email = document.getElementById('devotee-email').value;
+            bookingData.request = document.getElementById('devotee-request').value;
+            bookingData.sevas = selectedSevas;
+            bookingData.total = selectedSevas.reduce((sum, s) => sum + s.price, 0);
+            
+            showSection('payment');
+        });
+
+        // Image Preview
+        function previewImage(input, previewId) {
+            const preview = document.getElementById(previewId);
+            if (!preview) return;
+            
+            const img = preview.querySelector('img');
+            if (!img) return;
+            
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    if (e.target && e.target.result) {
+                        img.src = e.target.result;
+                        preview.classList.remove('hidden');
+                    }
+                };
+                reader.onerror = function() {
+                    console.error('Error reading file');
+                    alert('Error loading image preview. Please try again.');
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        // Google Apps Script Web App URL
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyrdiB5xKcGNIZh_LucMxez2C08JYNRvIWRAsqxeUvyuYa6NR6VPJs_7rbUezLHjLfX-w/exec';
+        
+        // Convert file to base64
+        function getBase64(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = () => resolve(reader.result);
+                reader.onerror = error => reject(error);
+            });
+        }
+
+        // Confirm Booking
+        async function confirmBooking() {
+            const transactionId = document.getElementById('transaction-id').value;
+            const paymentMode = document.getElementById('payment-mode').value;
+            const screenshotInput = document.getElementById('payment-screenshot');
+            
+            if (!transactionId || !paymentMode) {
+                alert('Please fill in all required payment details');
+                return;
+            }
+            
+            if (!screenshotInput.files || !screenshotInput.files[0]) {
+                alert('Please upload payment screenshot');
+                return;
+            }
+            
+            // Show loading state
+            const btn = document.querySelector('#payment-section button[onclick="confirmBooking()"]');
+            const originalBtnText = btn.innerHTML;
+            btn.innerHTML = '<i data-lucide="loader-2" class="inline-block w-5 h-5 mr-2 animate-spin"></i> Processing...';
+            btn.disabled = true;
+            lucide.createIcons();
+            
+            try {
+                // Generate Booking ID
+                bookingData.transactionId = transactionId;
+                bookingData.paymentMode = paymentMode;
+                bookingData.bookingId = 'DDD-' + new Date().getFullYear() + '-' + Math.random().toString(36).substr(2, 6).toUpperCase();
+                bookingData.date = new Date().toLocaleString();
+                bookingData.sevaNames = selectedSevas.map(s => s.name).join(', ');
+                bookingData.sevaDetails = selectedSevas.map(s => `${s.name} (${s.performingDateStr})`).join(', ');
+                
+                // Get base64 of screenshot
+                const screenshotBase64 = await getBase64(screenshotInput.files[0]);
+                bookingData.screenshotBase64 = screenshotBase64;
+                
+                // Send to Google Sheets
+                await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(bookingData)
+                });
+
+                // Send Email Notification using EmailJS
+                // IMPORTANT: Replace "your-gmail@gmail.com" below with your actual Gmail address
+                const emailParams = {
+                    booking_id: bookingData.bookingId,
+                    to_email: "your-gmail@gmail.com", // ← CHANGE THIS TO YOUR GMAIL ADDRESS
+                    devotee_name: bookingData.name,
+                    devotee_phone: bookingData.phone,
+                    devotee_email: bookingData.email || "Not provided",
+                    sevas: bookingData.sevaDetails,
+                    performing_dates: selectedSevas.map(s => `${s.name}: ${s.performingDateStr}`).join('\n'),
+                    total_amount: "₹" + bookingData.total,
+                    transaction_id: transactionId,
+                    payment_mode: paymentMode.toUpperCase(),
+                    booking_date: bookingData.date,
+                    special_request: bookingData.request || "None"
+                };
+
+                await emailjs.send("service_8zwn28b", "template_ezshm5l", emailParams);
+                
+                // Populate confirmation
+                document.getElementById('booking-id').textContent = bookingData.bookingId || '';
+                document.getElementById('confirm-name').textContent = bookingData.name || '';
+                document.getElementById('confirm-phone').textContent = bookingData.phone || '';
+                document.getElementById('confirm-sevas').textContent = bookingData.sevaNames || '';
+                document.getElementById('confirm-amount').textContent = bookingData.total || '0';
+                document.getElementById('confirm-transaction').textContent = transactionId || '';
+                
+                // Populate performing dates
+                const datesContainer = document.getElementById('confirm-performing-dates');
+                datesContainer.innerHTML = selectedSevas.map(s => `
+                    <div class="flex justify-between items-center bg-orange-50 p-2 rounded mb-1">
+                        <span class="font-medium">${s.name}:</span>
+                        <span class="text-orange-800 font-semibold">${s.performingDateStr}</span>
+                    </div>
+                `).join('');
+                
+                // Set screenshot with null check
+                const confirmImg = document.getElementById('confirm-screenshot-img');
+                if (confirmImg && screenshotBase64) {
+                    confirmImg.src = screenshotBase64;
+                    confirmImg.style.display = 'block';
+                } else if (confirmImg) {
+                    confirmImg.style.display = 'none';
+                }
+                
+                if (bookingData.email) {
+                    document.getElementById('receipt-message').textContent = `Seva receipt will be sent to ${bookingData.email} and your registered phone number shortly.`;
+                }
+                
+                showSection('confirmation');
+                createBlessingEffect();
+                
+            } catch (error) {
+                console.error('Error:', error);
+                alert('There was an error processing your booking. Please try again or contact the temple directly.');
+                btn.innerHTML = originalBtnText;
+                btn.disabled = false;
+                lucide.createIcons();
+            }
+        }
+
+        // Blessing Effect
+        function createBlessingEffect() {
+            const colors = ['#FF9933', '#FFD700', '#FF0000', '#FFA500'];
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    const div = document.createElement('div');
+                    div.style.position = 'fixed';
+                    div.style.left = Math.random() * 100 + 'vw';
+                    div.style.top = '-10px';
+                    div.style.width = '10px';
+                    div.style.height = '10px';
+                    div.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    div.style.borderRadius = '50%';
+                    div.style.zIndex = '9999';
+                    div.style.pointerEvents = 'none';
+                    document.body.appendChild(div);
+                    
+                    const animation = div.animate([
+                        { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
+                        { transform: `translateY(${window.innerHeight}px) rotate(360deg)`, opacity: 0 }
+                    ], {
+                        duration: 3000 + Math.random() * 2000,
+                        easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+                    });
+                    
+                    animation.onfinish = () => div.remove();
+                }, i * 100);
+            }
+        }
+
+        // Initialize
+        initializeSevas();
+    </script>
+</body>
+</html>
